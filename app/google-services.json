@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "794148745044",
+    "project_id": "unireminder-d1e1a",
+    "storage_bucket": "unireminder-d1e1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794148745044:android:3674d5f602e0510cf422c1",
+        "android_client_info": {
+          "package_name": "com.example.unireminder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9BU3lJi3CpxrE0-LpS-GT1RzZIyHQ6ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
