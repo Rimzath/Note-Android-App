@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.SearchView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageButton menuBtn;
     NoteAdapter noteAdapter;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,38 +32,65 @@ public class MainActivity extends AppCompatActivity {
         addNoteBtn = findViewById(R.id.add_note_btn);
         recyclerView = findViewById(R.id.recyler_view);
         menuBtn = findViewById(R.id.menu_btn);
+        searchView = findViewById(R.id.search_view);
 
-        addNoteBtn.setOnClickListener((v)-> startActivity(new Intent(MainActivity.this,NoteDetailsActivity.class)) );
-        menuBtn.setOnClickListener((v)->showMenu() );
-        setupRecyclerView();
+        addNoteBtn.setOnClickListener((v) -> startActivity(new Intent(MainActivity.this, NoteDetailsActivity.class)));
+        menuBtn.setOnClickListener((v) -> showMenu());
+        setupRecyclerView("");
+
+        //adding search functionality
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                setupRecyclerView(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                setupRecyclerView(newText);
+                return false;
+            }
+        });
     }
 
-    void showMenu(){
-        PopupMenu popupMenu  = new PopupMenu(MainActivity.this,menuBtn);
+    void showMenu() {
+        PopupMenu popupMenu = new PopupMenu(MainActivity.this, menuBtn);
         popupMenu.getMenu().add("Logout");
         popupMenu.show();
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if(menuItem.getTitle()=="Logout"){
+                if (menuItem.getTitle().equals("Logout")) {
                     FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     finish();
                     return true;
                 }
                 return false;
             }
         });
-
     }
 
-    void setupRecyclerView(){
-        Query query  = Utility.getCollectionReferenceForNotes().orderBy("timestamp",Query.Direction.DESCENDING);
+    void setupRecyclerView(String searchText) {
+        Query query;
+
+        if (searchText.isEmpty()) {
+            query = Utility.getCollectionReferenceForNotes().orderBy("timestamp", Query.Direction.DESCENDING);
+        } else {
+            query = Utility.getCollectionReferenceForNotes()
+                    .orderBy("title")
+                    .startAt(searchText)
+                    .endAt(searchText + "\uf8ff");
+        }
+
         FirestoreRecyclerOptions<Note> options = new FirestoreRecyclerOptions.Builder<Note>()
-                .setQuery(query,Note.class).build();
+                .setQuery(query, Note.class).build();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        noteAdapter = new NoteAdapter(options,this);
+        noteAdapter = new NoteAdapter(options, this);
         recyclerView.setAdapter(noteAdapter);
+        noteAdapter.startListening();
     }
 
     @Override
