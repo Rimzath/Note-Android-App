@@ -6,6 +6,7 @@ public class Note {
     String title;
     String content;
     Timestamp timestamp;
+    String photoPath;  // Add this line
 
     public Note() {
     }
@@ -32,5 +33,13 @@ public class Note {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getPhotoPath() {  // Add this getter
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {  // Add this setter
+        this.photoPath = photoPath;
     }
 }
