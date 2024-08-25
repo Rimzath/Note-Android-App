@@ -70,10 +70,10 @@
             android:id="@+id/add_photo_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_foreground"
-            android:contentDescription="Add Photo"
+            android:layout_gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_gravity="center"/>
+            android:contentDescription="Add Photo"
+            android:src="@drawable/baseline_image_24" />
 
         <!-- ImageView for displaying the selected photo -->
         <ImageView

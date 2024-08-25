@@ -14,8 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -44,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         menuBtn = findViewById(R.id.menu_btn);
         searchView = findViewById(R.id.search_view);
 
-        // Check for storage permission
+        // Checking for storage permission granted or not
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            // If permission is not granted, request it
+            // In here If permission is not granted, request it
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     PERMISSION_REQUEST_CODE);
@@ -59,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         addNoteBtn.setOnClickListener((v) -> startActivity(new Intent(MainActivity.this, NoteDetailsActivity.class)));
         menuBtn.setOnClickListener((v) -> showMenu());
         setupRecyclerView("");
+
+
 
         // Adding search functionality
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         noteAdapter.notifyDataSetChanged();
     }
 
-    // Handle the permission request response
+    // This is the method for above called for the permission request response
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -152,11 +152,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Your method to proceed with accessing storage
+    // This is the method to proceed with accessing storage, and if toast msg appear, we can access the external storage, load images, etc.
     private void proceedWithStorageAccess() {
-        // Here you can access the external storage, load images, etc.
-        // For example, you might want to load an image from storage.
-        // This is a placeholder for your storage access logic.
         Toast.makeText(this, "Permission granted! Now you can access storage.", Toast.LENGTH_SHORT).show();
     }
 }
