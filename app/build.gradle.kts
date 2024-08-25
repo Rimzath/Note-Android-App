@@ -45,6 +45,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
 
     implementation("com.firebaseui:firebase-ui-firestore:8.0.1")
+    implementation ("jp.wasabeef:richeditor-android:2.0.0")
 }
 
 apply(plugin = "com.google.gms.google-services")
