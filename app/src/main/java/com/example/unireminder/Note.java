@@ -6,7 +6,7 @@ public class Note {
     String title;
     String content;
     Timestamp timestamp;
-    String photoPath;  // Add this line
+    String photoPath;
 
     public Note() {
     }

@@ -41,7 +41,7 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
             Intent intent = new Intent(context, NoteDetailsActivity.class);
             intent.putExtra("title", note.title);
             intent.putExtra("content", note.content);
-            intent.putExtra("photoPath", note.getPhotoPath());  // Add this line
+            intent.putExtra("photoPath", note.getPhotoPath());
             String docId = this.getSnapshots().getSnapshot(position).getId();
             intent.putExtra("docId", docId);
             context.startActivity(intent);
@@ -57,14 +57,14 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
 
     class NoteViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView, contentTextView, timestampTextView;
-        ImageView photoView;  // Add this line
+        ImageView photoView;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.note_title_text_view);
             contentTextView = itemView.findViewById(R.id.note_content_text_view);
             timestampTextView = itemView.findViewById(R.id.note_timestamp_text_view);
-            photoView = itemView.findViewById(R.id.note_photo_view);  // Add this line
+            photoView = itemView.findViewById(R.id.note_photo_view);
         }
     }
 }
