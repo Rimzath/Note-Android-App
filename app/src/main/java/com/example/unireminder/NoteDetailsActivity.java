@@ -91,7 +91,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
         note.setTitle(noteTitle);
         note.setContent(noteContent);
         note.setTimestamp(Timestamp.now());
-        note.setPhotoPath(photoPath);  // Add this line
+        note.setPhotoPath(photoPath);
 
         saveNoteToFirebase(note);
     }
