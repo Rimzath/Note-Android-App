@@ -27,6 +27,9 @@ public class Note {
         this.content = content;
     }
 
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
