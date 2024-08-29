@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/my_primary"
+    android:background="@drawable/theme"
     tools:context=".MainActivity"
     android:padding="8dp">
     <RelativeLayout
@@ -39,7 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_bar_layout"
-        android:queryHint="Search notes"/>
+        android:queryHint="Search notes"
+        android:background="@drawable/search_view_background"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
