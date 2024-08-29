@@ -71,7 +71,6 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <!-- Add ImageButton for adding photo -->
             <ImageButton
                 android:id="@+id/add_photo_btn"
                 android:layout_width="wrap_content"
@@ -81,7 +80,6 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginEnd="16dp"/>
 
-            <!-- ImageButton for removing/changing the photo -->
             <ImageButton
                 android:id="@+id/remove_photo_btn"
                 android:layout_width="20dp"
@@ -94,7 +92,6 @@
 
         </LinearLayout>
 
-        <!-- ImageView for displaying the selected photo -->
         <ImageView
             android:id="@+id/photo_view"
             android:layout_width="match_parent"
