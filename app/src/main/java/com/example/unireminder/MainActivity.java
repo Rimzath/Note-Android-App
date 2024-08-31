@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         menuBtn = findViewById(R.id.menu_btn);
         searchView = findViewById(R.id.search_view);
 
-        // Checking for storage permission granted or not
+        // In here Checking for storage permission granted or not
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             // In here If permission is not granted, request it
